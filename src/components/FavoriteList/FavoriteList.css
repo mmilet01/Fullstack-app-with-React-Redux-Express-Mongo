@@ -1,0 +1,24 @@
+.favDiv {
+  /* background-color: rgb(216, 239, 247); */
+  padding: 10px;
+  margin-bottom: 10px;
+  color: darkgray;
+  width: 85%;
+  border-bottom: 2px solid white;
+}
+
+.favDiv a {
+  color: rgb(5, 5, 77);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+h1 {
+  color: rgb(5, 5, 77);
+  text-align: center;
+  font-size: 25px;
+  padding: 3px;
+  margin-top: 90px;
+  background-color: white;
+  width: 90%;
+}

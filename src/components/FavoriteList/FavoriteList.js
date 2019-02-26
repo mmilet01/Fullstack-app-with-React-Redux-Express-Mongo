@@ -1,40 +1,29 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import "./FavoriteList.css";
 
 class FavoriteList extends Component {
   constructor() {
     super();
-    this.state = {
+    /* this.state = {
       favorites2: []
     };
-    this.onClick = this.onClick.bind(this);
-  }
-
-  componentDidMount() {
-    this.setState({
-      favorites2: this.props.favorites
-    });
-  }
-
-  onClick() {
-    this.setState({
-      favorites2: this.props.favorites
-    });
+  } */
   }
 
   render() {
-    const favoriteList = this.state.favorites2.map(fav => (
-      <div key={fav.id}>
-        <h1>{fav.name}</h1>
+    const favoriteList = this.props.favorites.map(fav => (
+      <div key={fav.id} className="favDiv">
+        <p>{fav.name}</p>
       </div>
     ));
 
     return (
       <div>
-        <h1>Fav list works</h1>
-        <p>List</p>
+        <h1>
+          FAVORITES <i class="fa fa-laptop" />
+        </h1>
         {favoriteList}
-        <button onClick={this.onClick}>reRender</button>
       </div>
     );
   }

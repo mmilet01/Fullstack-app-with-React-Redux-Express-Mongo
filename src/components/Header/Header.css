@@ -1,0 +1,10 @@
+h2 {
+  background-color: white;
+  color: rgb(5, 5, 77);
+  text-align: center;
+  margin: auto;
+  padding: 20px;
+  font-style: oblique;
+  font-size: 30px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}

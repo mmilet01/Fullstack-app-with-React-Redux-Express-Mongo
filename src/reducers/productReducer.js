@@ -1,11 +1,11 @@
 import { FETCH_PRODUCTS } from "../constants/actions";
-import { ADD_FAVORITE } from "../constants/actions";
-import { REFRESH_FAVORITES } from "../constants/actions";
+import { ADD_TO_FAVORITE } from "../constants/actions";
+import { REMOVE_FROM_FAVORITE } from "../constants/actions";
+import { SEARCH_PRODUCTS } from "../constants/actions";
 
 const initialState = {
   products: [],
-  favorites: [],
-  fav: {}
+  favorites: []
 };
 
 export default function(state = initialState, action) {
@@ -15,15 +15,20 @@ export default function(state = initialState, action) {
         ...state,
         products: action.payload
       };
-    case ADD_FAVORITE:
+    case ADD_TO_FAVORITE:
       return {
         ...state,
-        fav: action.payload
+        favorites: [...state.favorites, action.payload]
       };
-    case REFRESH_FAVORITES:
+    case REMOVE_FROM_FAVORITE:
       return {
         ...state,
-        favorites: action.payload
+        favorites: state.favorites.filter(prod => prod.id !== action.payload.id)
+      };
+    case SEARCH_PRODUCTS:
+      return {
+        ...state,
+        products: action.payload
       };
     default:
       return state;

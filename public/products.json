@@ -1,0 +1,132 @@
+[
+  {
+    "id": 1,
+    "name": "Prijenosno računalo ASUS X510UF-EJ253",
+    "processor": "Intel Core i5 8250U",
+    "RAM": 8,
+    "SSD": 256,
+    "operatingSystem": "Linux",
+    "graphics": "nVidia GeForce MX130",
+    "price": 4559,
+    "image": "asus_core_i5.png",
+    "ocjene": [5, 2],
+    "favorite": false,
+    "recenzije": [
+      {
+        "recenzija_id": 1,
+        "recenzija": "Znaci najgori laptop otkad je laptopa",
+        "username": "Matko"
+      },
+      {
+        "recenzija_id": 2,
+        "recenzija": "Meni i nije toliko los",
+        "username": "joco"
+      }
+    ],
+    "isDisabled": false
+  },
+  {
+    "id": 2,
+    "name": "Prijenosno računalo ACER Aspire 5 NX.GVLEX.033",
+    "processor": "Intel Core i7 7500U",
+    "RAM": 8,
+    "SSD": 512,
+    "operatingSystem": "Linux",
+    "graphics": "GeForce MX130",
+    "price": 5400,
+    "image": "acer-aspire-5-ssd-512gb.jpeg",
+    "ocjene": [1, 1, 5, 4],
+    "favorite": false,
+    "recenzije": [
+      {
+        "recenzija_id": 1,
+        "recenzija": "Stvarno dobar",
+        "username": "Matko"
+      },
+      {
+        "recenzija_id": 2,
+        "recenzija": "Tezak ali ok",
+        "username": "joco"
+      }
+    ],
+    "isDisabled": false
+  },
+  {
+    "id": 3,
+    "name": "Prijenosno računalo ACER Aspire 5 NX.GWJEX.017",
+    "processor": "Intel Core i7 8550U",
+    "RAM": 8,
+    "SSD": 256,
+    "operatingSystem": "Linux",
+    "graphics": "nVidia GeForce MX130",
+    "price": 5220,
+    "image": "acer-aspire-5-ssd-256gb.jpg",
+    "ocjene": [4, 5],
+    "favorite": false,
+    "recenzije": [
+      {
+        "recenzija_id": 1,
+        "recenzija": "sranje kakvog nema",
+        "username": "saljiv"
+      },
+      {
+        "recenzija_id": 2,
+        "recenzija": "Jedan od boljih",
+        "username": "username"
+      }
+    ],
+    "isDisabled": false
+  },
+  {
+    "id": 4,
+    "name": "Prijenosno računalo HP 450 3BZ73EA",
+    "processor": "Intel Core i7 8550U",
+    "RAM": 8,
+    "SSD": 256,
+    "operatingSystem": "Windows 10 Pro",
+    "graphics": "Intel HD Graphics 620",
+    "price": 7400,
+    "image": "hp-core-i7.png",
+    "ocjene": [2, 2, 4],
+    "favorite": false,
+    "recenzije": [
+      {
+        "recenzija_id": 1,
+        "recenzija": "PRESKUP",
+        "username": "shuffeler"
+      },
+      {
+        "recenzija_id": 2,
+        "recenzija": "Zadovoljavajuce",
+        "username": "masterMind"
+      }
+    ],
+    "isDisabled": false
+  },
+  {
+    "id": 5,
+    "name": "Prijenosno računalo DELL Inspiron 5770",
+    "processor": "Intel Core i5 8250U",
+    "RAM": 8,
+    "SSD": 128,
+    "operatingSystem": "Linux",
+    "graphics": "AMD Radeon 530",
+    "price": 5770,
+    "image": "dell-inspiron-5770.png",
+    "ocjene": [4, 4],
+    "favorite": false,
+    "recenzije": [
+      {
+        "recenzija_id": 1,
+        "recenzija": "nema boljeg",
+        "username": "Jozo"
+      },
+      {
+        "recenzija_id": 2,
+        "recenzija": "skup ko vrag",
+        "username": "sinisa"
+      }
+    ],
+    "isDisabled": false
+  }
+]

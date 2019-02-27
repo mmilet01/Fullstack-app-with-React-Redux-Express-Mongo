@@ -1,27 +1,34 @@
 import React, { Component } from "react";
 import "./ProductDetails.css";
+import AddFavorite from "../AddToFav/AddFavorite";
+import { connect } from "react-redux";
+import Grades from "../Grades/Grades";
 
 class ProductDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      product: {}
+      product: {},
+      recenzije: []
     };
   }
   componentWillMount() {
     const id = +this.props.match.params.id;
-    fetch("http://localhost:3000/products.json")
-      .then(data => data.json())
-      .then(products => products.find(prod => prod.id === id))
-      .then(prodd =>
-        this.setState({
-          product: prodd
-        })
-      );
+    let newProduct = this.props.products.find(prod => prod.id === id);
+    this.setState({
+      product: newProduct,
+      recenzije: newProduct.recenzije
+    });
   }
 
   render() {
     const product = this.state.product;
+    const recenzije = this.state.recenzije.map(rec => (
+      <div>
+        <h3>{rec.username}</h3>
+        <p>{rec.recenzija}</p>
+      </div>
+    ));
     return (
       <div className="detailProduct">
         <h1>{product.name}</h1>
@@ -34,11 +41,20 @@ class ProductDetails extends Component {
             <p>{product.RAM}GB</p>
             <p>{product.SSD}GB</p>
             <p>{product.price} kn</p>
+            <Grades product={product} />
+            <AddFavorite product={product} />
           </div>
         </div>
+        <h3>Recenzije</h3>
+        {recenzije}
       </div>
     );
   }
 }
 
-export default ProductDetails;
+const mapStateToProps = state => ({
+  products: state.productReducer.products,
+  favorites: state.productReducer.favorites
+});
+
+export default connect(mapStateToProps)(ProductDetails);

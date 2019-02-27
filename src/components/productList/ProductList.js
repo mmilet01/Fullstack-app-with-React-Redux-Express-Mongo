@@ -8,47 +8,36 @@ import {
 } from "../../actions/productActions";
 import "./ProductList.css";
 import { Link } from "react-router-dom";
+import AddFavorite from "../AddToFav/AddFavorite";
+import Grades from "../Grades/Grades";
 
 class ProductList extends Component {
-  constructor() {
-    super();
-    /*   this.state = {
-      fav: []
-    }; */
-    this.handleClick = this.handleClick.bind(this);
+  constructor(props) {
+    super(props);
+    this.state = {
+      prod: this.props.products
+    };
     this.onChange = this.onChange.bind(this);
   }
-  componentDidMount() {
+  componentWillMount() {
     this.props.fetchProducts();
   }
 
-  handleClick(product) {
-    let favorites = this.props.favorites;
-    let lengthBefore = favorites.length;
-    let favorites2 = favorites.filter(prod => prod.id !== product.id);
-    if (lengthBefore === favorites2.length) {
-      this.props.addToFavorite(product);
-      favorites2.push(product);
-    } else {
-      this.props.removeFromFavorites(product);
-    }
-  }
   onChange(e) {
     const { value } = e.target;
     this.props.searchProducts(value);
   }
 
   render() {
-    const productList = this.props.products.map(product => (
+    const productList = this.props.searched.map(product => (
       <div key={product.id} className="productCard">
-        <button onClick={() => this.handleClick(product)}>Add to fav</button>
+        <AddFavorite product={product} />
         <div className="imgDiv">
           <img src={"http://localhost:3000/images/" + product.image} />
         </div>
         <h3>{product.name}</h3>
         <p className="price">{product.price} kn</p>
-        {/*       ocjene
-         */}{" "}
+        <Grades product={product} />
         <div>
           <h4>Operating system: {product.operatingSystem}</h4>
           <h4>Processor: {product.processor}</h4>
@@ -64,7 +53,7 @@ class ProductList extends Component {
       <div>
         <input
           type="text"
-          placeholder="search products"
+          placeholder="SEARCH PRODUCTS"
           name="search"
           onChange={this.onChange}
         />
@@ -76,7 +65,8 @@ class ProductList extends Component {
 
 const mapStateToProps = state => ({
   products: state.productReducer.products,
-  favorites: state.productReducer.favorites
+  favorites: state.productReducer.favorites,
+  searched: state.productReducer.searched
 });
 
 export default connect(

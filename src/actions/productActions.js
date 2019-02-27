@@ -29,28 +29,8 @@ export const removeFromFavorites = favProduct => dispatch => {
 };
 
 export const searchProducts = value => dispatch => {
-  if (value === "") {
-    fetch("http://localhost:3000/products.json")
-      .then(data => data.json())
-      .then(products =>
-        dispatch({
-          type: FETCH_PRODUCTS,
-          payload: products
-        })
-      );
-  } else {
-    fetch("http://localhost:3000/products.json")
-      .then(result => result.json())
-      .then(data =>
-        data.filter(prod =>
-          prod.name.toLowerCase().includes(value.toLowerCase())
-        )
-      )
-      .then(products =>
-        dispatch({
-          type: FETCH_PRODUCTS,
-          payload: products
-        })
-      );
-  }
+  dispatch({
+    type: SEARCH_PRODUCTS,
+    payload: value
+  });
 };

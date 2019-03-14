@@ -9,6 +9,7 @@ import "./AddFavorite.css";
 class AddFavorite extends Component {
   constructor(props) {
     super(props);
+    console.log(this.props);
     this.state = {
       product: this.props.product,
       favorite: this.props.favorites.find(
@@ -20,19 +21,22 @@ class AddFavorite extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick(product) {
+  handleClick() {
+    console.log("add attempt", this.state.product);
     let favorites = this.props.favorites;
     let lengthBefore = favorites.length;
-    let favorites2 = favorites.filter(prod => prod.id !== product.id);
+    let favorites2 = favorites.filter(
+      prod => prod._id !== this.state.product._id
+    );
     if (lengthBefore === favorites2.length) {
-      this.props.addToFavorite(product);
-      favorites2.push(product);
+      this.props.addToFavorite(this.state.product);
+      favorites2.push(this.state.product);
       this.setState({
         ...this.state,
         favorite: !this.state.favorite
       });
     } else {
-      this.props.removeFromFavorites(product);
+      this.props.removeFromFavorites(this.state.product);
       this.setState({
         ...this.state,
         favorite: !this.state.favorite
@@ -42,10 +46,7 @@ class AddFavorite extends Component {
   render() {
     return (
       <div>
-        <button
-          className="buttonAdd"
-          onClick={() => this.handleClick(this.state.product)}
-        >
+        <button className="buttonAdd" onClick={this.handleClick}>
           {!this.state.favorite ? (
             <p>Add to favorites</p>
           ) : (

@@ -13,7 +13,7 @@ class FavoriteList extends Component {
 
   render() {
     const favoriteList = this.props.favorites.map(fav => (
-      <div key={fav.id} className="favDiv">
+      <div key={fav._id} className="favDiv">
         <h3>{fav.name}</h3>
       </div>
     ));

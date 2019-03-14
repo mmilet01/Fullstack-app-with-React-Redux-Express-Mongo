@@ -43,6 +43,7 @@ h4 {
   padding: 10px 20px;
   cursor: pointer;
   font-weight: bold;
+  margin-top: 10px;
 }
 
 .btnDetail:hover {

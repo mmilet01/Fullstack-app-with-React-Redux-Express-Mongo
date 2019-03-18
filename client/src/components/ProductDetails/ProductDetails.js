@@ -6,6 +6,7 @@ import Grades from "../Grades/Grades";
 import PropTypes from "prop-types";
 import { fetchProducts } from "../../actions/productActions";
 import DeleteProduct from "../DeleteProduct/DeleteProduct";
+import Comments from "../Comments/Comments";
 
 class ProductDetails extends Component {
   constructor(props) {
@@ -33,12 +34,13 @@ class ProductDetails extends Component {
     const product = this.props.products.find(
       prod => prod._id == this.props.match.params.id
     );
-    const recenzije = product.recenzije.map(rec => (
+    /* let recenzije = product.recenzije.map(rec => (
       <div>
         <h3>{rec.username}</h3>
         <p>{rec.recenzija}</p>
       </div>
-    ));
+    )); */
+
     console.log(product);
     return (
       <div>
@@ -60,8 +62,7 @@ class ProductDetails extends Component {
                 <DeleteProduct id={product._id} />
               </div>
             </div>
-            <h3>Recenzije</h3>
-            {recenzije}
+            <Comments product={product} />
           </div>
         ) : (
           <h2>Loading...</h2>

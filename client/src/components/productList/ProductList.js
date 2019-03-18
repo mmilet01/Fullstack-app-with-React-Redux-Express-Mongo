@@ -12,7 +12,6 @@ import { Link } from "react-router-dom";
 import AddFavorite from "../AddToFav/AddFavorite";
 import Grades from "../Grades/Grades";
 import PropTypes from "prop-types";
-import InputForm from "../InputForm/InputForm";
 import DeleteProduct from "../DeleteProduct/DeleteProduct";
 
 class ProductList extends Component {
@@ -77,7 +76,9 @@ class ProductList extends Component {
           onChange={this.onChange2}
           value={this.state.value}
         />
-        <InputForm />
+        <Link to="/addProduct">
+          <button className="btnDetail">Add new product</button>
+        </Link>
         <div className="productsContainer">
           {this.props.products.products
             .filter(prod =>
@@ -103,6 +104,9 @@ class ProductList extends Component {
                     <button className="btnDetail">Details</button>
                   </Link>
                   <DeleteProduct id={product._id} />
+                  <Link to={"/editProduct/" + product._id}>
+                    <button className="btnDetail">EDIT</button>
+                  </Link>
                 </div>
               </div>
             ))}

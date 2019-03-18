@@ -8,6 +8,8 @@ import FavoriteList from "./components/FavoriteList/FavoriteList";
 import Header from "./components/Header/Header";
 import { BrowserRouter, Route } from "react-router-dom";
 import ProductDetails from "./components/ProductDetails/ProductDetails";
+import InputForm from "./components/InputForm/InputForm";
+import EditProduct from "./components/EditProduct/EditProduct";
 
 class App extends Component {
   render() {
@@ -19,6 +21,8 @@ class App extends Component {
             <div className="content">
               <Route exact path="/" component={ProductList} />
               <Route path="/details/:id" component={ProductDetails} />
+              <Route path="/addProduct" component={InputForm} />
+              <Route path="/editProduct/:id" component={EditProduct} />
               <FavoriteList />
             </div>
           </div>

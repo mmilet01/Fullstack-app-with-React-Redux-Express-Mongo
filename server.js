@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const app = express();
 const port = process.env.PORT || 5000;
 
-const Computers = require("./models/computer");
+const Computer = require("./models/computer");
 /// ????
 var allowCrossDomain = function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -29,28 +29,43 @@ mongoose
   .catch(err => console.log(err));
 
 app.get("/", function(req, res) {
-  Computers.find()
+  Computer.find()
     .sort({ date: -1 })
     .then(items => res.json(items));
 });
 
 app.post("/", (req, res) => {
-  const newComputer = new Computers({
+  /* const newComputer = new Computer({
     name: req.body.name,
     processor: req.body.processor,
     operatingSystem: req.body.operatingSystem,
     graphics: req.body.graphics,
     RAM: req.body.RAM,
     SSD: req.body.SSD,
-    price: req.body.price /* id: req.body.id */
-    /*     ocjene: req.body.ocjene,
-     */
-  });
+    price: req.body.price
+  }); */
+  console.log(req.body);
+  let newComputer = new Computer(req.body);
   newComputer.save().then(item => res.json(item));
 });
 
+app.put("/edit/:id", (req, res) => {
+  Computer.findByIdAndUpdate({ _id: req.params.id }, req.body).then(item => {
+    item.save();
+    /*     res.send(item);
+     */
+  });
+});
+
+app.post(`/addGrade/:id`, (req, res) => {
+  Computer.findById(req.params.id).then(item => {
+    item.ocjene.push(req.body.number);
+    item.save();
+  });
+});
+
 app.delete("/:id", (req, res) => {
-  Computers.findById(req.params.id)
+  Computer.findById(req.params.id)
     .then(item => item.remove().then(() => res.json({ success: true })))
     .catch(err => res.status(404).json({ success: false }));
 });

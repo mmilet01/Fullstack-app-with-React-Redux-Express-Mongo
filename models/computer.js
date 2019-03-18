@@ -35,7 +35,10 @@ const computerSchema = new Schema({
   },
   ocjene: {
     type: Array,
+    required: true,
     default: []
+    /*     default: []
+     */
   },
   recenzije: {
     type: Array,

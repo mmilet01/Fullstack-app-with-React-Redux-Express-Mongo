@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { deleteProduct } from "../../actions/productActions";
+import { Link } from "react-router-dom";
 
 class DeleteProduct extends Component {
   constructor(props) {
@@ -16,13 +17,15 @@ class DeleteProduct extends Component {
   render() {
     return (
       <div>
-        <button
-          onClick={this.onDeleteClick}
-          className="btnDetail"
-          style={{ color: "red" }}
-        >
-          Delete item
-        </button>
+        <Link to={"/"}>
+          <button
+            onClick={this.onDeleteClick}
+            className="btnDetail"
+            style={{ color: "red" }}
+          >
+            Delete item
+          </button>
+        </Link>
       </div>
     );
   }

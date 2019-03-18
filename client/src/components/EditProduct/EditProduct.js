@@ -1,14 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { addNewItem } from "../../actions/productActions";
-import "./InputForm.css";
 import { Link } from "react-router-dom";
-import { Redirect } from "react-router-dom";
-import { withRouter } from "react-router-dom";
+import {
+  fetchProducts,
+  deleteProduct,
+  addNewItem
+} from "../../actions/productActions";
+import axios from "axios";
 
-class InputForm extends Component {
-  constructor() {
-    super();
+class EditProduct extends Component {
+  constructor(props) {
+    super(props);
     this.state = {
       name: "",
       processor: "",
@@ -16,20 +18,28 @@ class InputForm extends Component {
       graphics: "",
       SSD: "",
       RAM: "",
-      price: ""
+      price: "",
+      ocjene: [],
+      _id: ""
     };
-    this.onSubmit = this.onSubmit.bind(this);
     this.onInputChange = this.onInputChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
-
-  onInputChange(e) {
-    const { value } = e.target;
+  componentWillMount() {
+    this.props.fetchProducts();
+    const product = this.props.products.find(
+      prod => prod._id == this.props.match.params.id
+    );
     this.setState({
-      ...this.state,
-      [e.target.name]: value
+      name: product.name,
+      processor: product.processor,
+      operatingSystem: product.operatingSystem,
+      graphics: product.graphics,
+      SSD: product.SSD,
+      RAM: product.RAM,
+      price: product.price
     });
   }
-
   onSubmit(e) {
     e.preventDefault();
     let newItem = {
@@ -41,11 +51,22 @@ class InputForm extends Component {
       SSD: this.state.SSD,
       price: this.state.price
     };
-    this.props.addNewItem(newItem);
-    this.props.history.push("/");
-    window.location.reload();
-  }
 
+    axios.put(
+      `http://localhost:5000/edit/${this.props.match.params.id}`,
+      newItem
+    );
+    window.location.reload();
+
+    this.props.history.push("/");
+  }
+  onInputChange(e) {
+    const { value } = e.target;
+    this.setState({
+      ...this.state,
+      [e.target.name]: value
+    });
+  }
   render() {
     return (
       <div>
@@ -101,7 +122,7 @@ class InputForm extends Component {
           />
           <Link to="/">
             <button className="btnDetail" onClick={this.onSubmit}>
-              Add new
+              EDIT
             </button>
           </Link>
         </form>
@@ -109,12 +130,12 @@ class InputForm extends Component {
     );
   }
 }
+
 const mapStateToProps = state => ({
   products: state.productReducer.products
 });
-export default withRouter(
-  connect(
-    mapStateToProps,
-    { addNewItem }
-  )(InputForm)
-);
+
+export default connect(
+  mapStateToProps,
+  { fetchProducts, deleteProduct, addNewItem }
+)(EditProduct);

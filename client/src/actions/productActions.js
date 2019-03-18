@@ -69,3 +69,11 @@ export const deleteProduct = id => dispatch => {
     });
   });
 };
+
+/* export const addGrade = grade => dispatch => {
+  dispatch({
+    type: ADD_GRADE,
+    payload: grade
+  });
+};
+ */

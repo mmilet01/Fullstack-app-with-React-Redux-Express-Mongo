@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import axios from "axios";
 
 class Grades extends Component {
   constructor(props) {
@@ -11,7 +12,11 @@ class Grades extends Component {
     };
     this.onClick = this.onClick.bind(this);
   }
+
   onClick(number) {
+    let product = this.props.products.find(
+      prod => prod._id === this.props.product._id
+    );
     this.props.products
       .find(prod => prod._id === this.props.product._id)
       .ocjene.push(number);
@@ -21,14 +26,21 @@ class Grades extends Component {
         prod => prod._id === this.props.product._id
       )
     });
+    let grade = {
+      number: number
+    };
+
+    axios.post(`http://localhost:5000/addGrade/${product._id}`, grade);
   }
 
   render() {
     let ocjene = 0;
-    this.state.prod.ocjene.map(ocj => (ocjene += ocj));
+    this.state.prod.ocjene.map(ocj => (ocjene += +ocj));
     let ocjena = 0;
     ocjena = ocjene / this.state.prod.ocjene.length;
     ocjena = Math.round(ocjena * 100) / 100;
+    /* console.log(ocjena);
+    console.log(ocjene); */
 
     return (
       <div>

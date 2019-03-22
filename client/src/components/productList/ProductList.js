@@ -13,6 +13,7 @@ import AddFavorite from "../AddToFav/AddFavorite";
 import Grades from "../Grades/Grades";
 import PropTypes from "prop-types";
 import DeleteProduct from "../DeleteProduct/DeleteProduct";
+import { logout } from "../../actions/authActions";
 
 class ProductList extends Component {
   constructor(props) {
@@ -66,6 +67,23 @@ class ProductList extends Component {
         </Link>
       </div>
     )); */
+    const RegAndLogin = (
+      <div>
+        <Link to="/register">
+          <button className="btnDetail">Register</button>
+        </Link>
+        <Link to="/login">
+          <button className="btnDetail">Login</button>
+        </Link>
+      </div>
+    );
+    const Logout = (
+      <div>
+        <button onClick={this.props.logout} className="btnDetail">
+          Logout
+        </button>
+      </div>
+    );
 
     return (
       <div>
@@ -79,6 +97,7 @@ class ProductList extends Component {
         <Link to="/addProduct">
           <button className="btnDetail">Add new product</button>
         </Link>
+        {this.props.auth.isLoggedIn ? Logout : RegAndLogin}
         <div className="productsContainer">
           {this.props.products.products
             .filter(prod =>
@@ -126,7 +145,8 @@ ProductList.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  products: state.productReducer
+  products: state.productReducer,
+  auth: state.authReducer
 });
 
 export default connect(
@@ -136,6 +156,7 @@ export default connect(
     addToFavorite,
     removeFromFavorites,
     addNewItem,
-    searchProducts
+    searchProducts,
+    logout
   }
 )(ProductList);

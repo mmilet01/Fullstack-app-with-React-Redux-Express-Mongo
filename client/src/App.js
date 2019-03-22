@@ -10,8 +10,14 @@ import { BrowserRouter, Route } from "react-router-dom";
 import ProductDetails from "./components/ProductDetails/ProductDetails";
 import InputForm from "./components/InputForm/InputForm";
 import EditProduct from "./components/EditProduct/EditProduct";
+import UserRegister from "./components/UserRegister/register";
+import LoginForm from "./components/LoginForm/LoginForm";
+import { loadUser } from "./actions/authActions";
 
 class App extends Component {
+  componentDidMount() {
+    store.dispatch(loadUser());
+  }
   render() {
     return (
       <BrowserRouter>
@@ -23,6 +29,8 @@ class App extends Component {
               <Route path="/details/:id" component={ProductDetails} />
               <Route path="/addProduct" component={InputForm} />
               <Route path="/editProduct/:id" component={EditProduct} />
+              <Route path="/register" component={UserRegister} />
+              <Route path="/login" component={LoginForm} />
               <FavoriteList />
             </div>
           </div>

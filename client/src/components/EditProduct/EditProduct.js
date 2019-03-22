@@ -53,7 +53,7 @@ class EditProduct extends Component {
     };
 
     axios.put(
-      `http://localhost:5000/edit/${this.props.match.params.id}`,
+      `http://localhost:5000/api/items/edit/${this.props.match.params.id}`,
       newItem
     );
     window.location.reload();

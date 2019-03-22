@@ -7,7 +7,7 @@ import { DELETE_PRODUCT } from "../constants/actions";
 import axios from "axios";
 
 export const fetchProducts = () => dispatch => {
-  axios.get("http://localhost:5000").then(res =>
+  axios.get("http://localhost:5000/api/items").then(res =>
     dispatch({
       type: FETCH_PRODUCTS,
       payload: res.data
@@ -28,7 +28,7 @@ export const addNewItem = item => dispatch => {
       payload: item
     })
   ); */
-  axios.post("http://localhost:5000", item);
+  axios.post("http://localhost:5000/api/items", item);
   dispatch({
     type: ADD_NEW_ITEM,
     payload: item
@@ -57,17 +57,34 @@ export const searchProducts = value => dispatch => {
 };
 
 export const deleteProduct = id => dispatch => {
+  const token = localStorage.getItem("token");
+  console.log(token);
+  const config = {
+    headers: {
+      "Content-type": "application/json"
+    }
+  };
+  // If token, add to headers
+  if (token) {
+    config.headers["x-auth-token"] = token;
+  }
   /* axios.delete(`http://localhost:5000/${id}`);
   dispatch({
     type: DELETE_PRODUCT,
     payload: id
   }); */
-  axios.delete(`http://localhost:5000/${id}`).then(res => {
-    dispatch({
-      type: DELETE_PRODUCT,
-      payload: id
+  axios
+    .delete(`http://localhost:5000/api/items/delete/${id}`, config)
+    .then(res => {
+      dispatch({
+        type: DELETE_PRODUCT,
+        payload: id
+      });
+    })
+    .catch(err => {
+      alert("You cant delete it you're not mario mileta");
+      console.log(err.response.data);
     });
-  });
 };
 
 /* export const addGrade = grade => dispatch => {

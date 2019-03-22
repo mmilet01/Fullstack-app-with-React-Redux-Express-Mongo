@@ -30,7 +30,10 @@ class Grades extends Component {
       number: number
     };
 
-    axios.post(`http://localhost:5000/addGrade/${product._id}`, grade);
+    axios.post(
+      `http://localhost:5000/api/items/addGrade/${product._id}`,
+      grade
+    );
   }
 
   render() {

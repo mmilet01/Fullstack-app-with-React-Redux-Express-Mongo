@@ -23,14 +23,12 @@ class AddFavorite extends Component {
 
   handleClick() {
     console.log("add attempt", this.state.product);
-    let favorites = this.props.favorites;
-    let lengthBefore = favorites.length;
-    let favorites2 = favorites.filter(
-      prod => prod._id !== this.state.product._id
+    let product = this.props.favorites.find(
+      prod => prod.name == this.state.product.name
     );
-    if (lengthBefore === favorites2.length) {
+
+    if (!product) {
       this.props.addToFavorite(this.state.product);
-      favorites2.push(this.state.product);
       this.setState({
         ...this.state,
         favorite: !this.state.favorite

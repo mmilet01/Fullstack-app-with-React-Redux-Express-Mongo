@@ -17,6 +17,7 @@ var allowCrossDomain = function(req, res, next) {
 
 app.use(allowCrossDomain);
 // to here
+app.use(express.urlencoded({extended: false}))
 app.use(express.json());
 
 mongoose

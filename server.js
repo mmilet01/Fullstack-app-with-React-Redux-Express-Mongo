@@ -17,12 +17,12 @@ var allowCrossDomain = function(req, res, next) {
 
 app.use(allowCrossDomain);
 // to here
-app.use(express.urlencoded({extended: false}))
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 mongoose
   .connect(
-    "mongodb+srv://Mario:curko333@cluster0-mdyho.mongodb.net/ReactRedux?retryWrites=true",
+    "mongodb+srv://Mario:'password'@cluster0-mdyho.mongodb.net/ReactRedux?retryWrites=true",
     { useNewUrlParser: true }
   )
   .then(() => console.log("Connected to mongoDB"))

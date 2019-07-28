@@ -23,7 +23,7 @@ app.use(bodyParser.json());
 
 mongoose
   .connect(
-    "mongodb+srv://Mario:curko333@cluster0-mdyho.mongodb.net/ReactRedux?retryWrites=true"
+    "mongodb+srv://Mario:'password'@cluster0-mdyho.mongodb.net/ReactRedux?retryWrites=true"
   )
   .then(() => console.log("Connected to mongoDB"))
   .catch(err => console.log(err));

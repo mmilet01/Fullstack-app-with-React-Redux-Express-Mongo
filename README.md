@@ -1,7 +1,14 @@
 # Fullstack-app-with-React-Redux-Express-Mongo
 # CRUD Product Listings App
 
-A CRUD (Create, Read, Update, Delete) application built with React, Redux, Express, MongoDB, and Mongoose. This app allows users to manage product listings by performing CRUD operations.
+A CRUD (Create, Read, Update, Delete) application built with
+- React
+- Redux
+- Nodejs & Express
+- MongoDB
+- Mongoose
+
+This app allows users to manage product listings by performing CRUD operations.
 
 ## Features
 
